@@ -12,10 +12,7 @@ namespace EjercicioSocketBM
     internal class Program
     {
 
-        //Inicia una conversacion con un cliente hasta que algun extremo
-        //de la comunicacion se despida, con un chaooo
 
-        //en mi caso hare un metodo generar comunicacion, osea toda comunicacion del cliente pasara por el metodo.
         static void GenerarComunicacion(ClienteCom cliente)
         {
             bool terminar = false;
