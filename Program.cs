@@ -11,7 +11,7 @@ namespace EjercicioSocketBM
 {
     internal class Program
     {
-        //PROBANDING
+
         //Inicia una conversacion con un cliente hasta que algun extremo
         //de la comunicacion se despida, con un chaooo
 
