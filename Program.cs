@@ -13,19 +13,20 @@ namespace EjercicioSocketBM
     {
 
 
-        static void GenerarComunicacion(ClienteCom cliente)
+        static void Comunicacion(ClienteCom cliente)
         {
-            bool terminar = false;
-            while (!terminar)
+            bool finalizar = false;
+
+            while (!finalizar)
             {
                 string mensaje = cliente.Leer();
                 if (mensaje != null)
                 {
-                    Console.WriteLine("Cliente : {0}", mensaje);
+                    Console.WriteLine("Cliente : "+ mensaje);
                     if (mensaje.ToLower() == "chao")
                     {
                         cliente.Escribir("Has sido desconectado");
-                        terminar = true;
+                        finalizar = true;
                     }
                     else
                     {
@@ -35,7 +36,7 @@ namespace EjercicioSocketBM
                         if (mensaje.ToLower() == "chao")
                         {
                             cliente.Escribir("Has sido desconectado");
-                            terminar = true;
+                            finalizar = true;
                         }
                     }
                 }
@@ -49,25 +50,29 @@ namespace EjercicioSocketBM
         static void Main(string[] args)
         {
             int puerto = Convert.ToInt32(ConfigurationManager.AppSettings["puerto"]);
-            Console.WriteLine("Levantando servidor en puerto {0}", puerto);
+            Console.WriteLine("Iniciando el servidor en el puerto "+puerto);
             ServerSocket serverSocket = new ServerSocket(puerto);
+
 
             if (serverSocket.Iniciar())
             {
+
                 while (true)
                 {
-                    //luego de iniciar el servidor queda esperando....
+
                     Console.WriteLine("Esperando clientes...");
                     Socket socket = serverSocket.ObtenerCliente();
-                    Console.WriteLine("Cliente recibido");
-                    // comunicarse con el cliente
+                    Console.WriteLine("Cliente conectado correctamente");
                     ClienteCom cliente = new ClienteCom(socket);
-                    GenerarComunicacion(cliente);
+                    Comunicacion(cliente);
+
                 }
             }
             else
             {
-                Console.WriteLine("Error al tomar posesion del puerto{0}", puerto);
+
+                Console.WriteLine("Error, no se puede acceder al puerto "+puerto);
+
             }
 
         }
